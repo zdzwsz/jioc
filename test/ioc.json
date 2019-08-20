@@ -1,0 +1,43 @@
+{
+    "name": "zdzwsz",
+    "date": {
+        "type": "date",
+        "value": "2018-01-01"
+    },
+    "age": 1,
+    "userType": {
+        "type": "meta",
+        "value": "User:{name:String;age:int}}"
+    },
+    "helloworld": {
+        "type": "./test/HelloWorld",
+        "constructor": [
+            {
+                "value": "@name"
+            }
+        ]
+    },
+    "helloworld1": {
+        "type": "./test/HelloWorld",
+        "singleton": true,
+        "constructor": [
+            {
+                "value": "@name"
+            }
+        ]
+    },
+    "helloworld2": {
+        "type": "./test/HelloWorld"
+    },
+    "hello": {
+        "type": "rpc",
+        "object": "@helloworld1",
+        "methods": [
+            {
+                "name": "sayHelloByMe",
+                "return": "string",
+                "parameters": {"name":"string"}
+            }
+        ]
+    }
+}
