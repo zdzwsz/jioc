@@ -28,6 +28,21 @@ function main(){
     let hello2 = ioc.get("helloworld2");
     hello2.sayHello();
     hello2.sayHelloByMe("wsz");
+
+    console.time("remote");
+    let remoteHello = ioc.get("remoteHello");
+    remoteHello.sayHello({},function(err , message){
+
+    });
+    console.timeEnd("remote");
+    console.time("remote1");
+    remoteHello = ioc.get("remoteHello");
+    remoteHello.sayHello({},function(err , message){
+
+    });
+
+console.timeEnd("remote1");
+
 }
 
 main();
