@@ -31,13 +31,28 @@
     },
     "hello": {
         "type": "rpc",
+        "note": "这是一个类的注释",
         "object": "@helloworld1",
         "methods": [
             {
                 "name": "sayHelloByMe",
+                "note": "这是一个描述方法的注释",
                 "return": "string",
-                "parameters": {"name":"string"}
+                "parameters": {
+                    "name": "string"
+                }
+            },
+            {
+                "name": "sayHello"
             }
         ]
+    },
+    
+    "remoteHello":{
+        "type":"remote",
+        "ip":"127.0.0.1",
+        "port":"50051",
+        "name":"hello"
     }
+
 }

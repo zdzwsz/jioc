@@ -1,0 +1,24 @@
+
+syntax = "proto3";
+package jioc;
+
+service MetaService {
+    rpc getAllMetaName(Request) returns (getAllReply);
+    rpc getSerevicesByName (nameRequest) returns (metaReply);
+    rpc getProtoByName(nameRequest) returns (metaReply);
+}
+
+message Request{}
+
+message getAllReply{
+    repeated string message = 1;
+}
+
+message nameRequest{
+    string name = 1;
+}
+
+message metaReply {
+    string message = 1;
+}
+
