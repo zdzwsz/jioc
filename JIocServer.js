@@ -76,7 +76,11 @@ class JIocServer {
         this.server.tryShutdown();
     }
 }
+
+if (require.main === module) {
+    let server = new JIocServer(json);
+    server.start();
+}
+
 module.exports = JIocServer;
 
-let server = new JIocServer(json);
-server.start();

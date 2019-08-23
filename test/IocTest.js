@@ -35,6 +35,7 @@ function main(){
 
     });
     console.timeEnd("remote");
+    
     console.time("remote1");
     remoteHello = ioc.get("remoteHello");
     remoteHello.sayHello({},function(err , message){
