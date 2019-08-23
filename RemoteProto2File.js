@@ -20,12 +20,13 @@ function getProto2File(ip, port, serviceName,tempPath) {
     metaService.getProtoByName({ name: serviceName }, function (err, response) {
         if (err) {
             console.log(err);
-        }
-        try {
-            fs.writeFileSync(path, response.message);
-            console.log('get reomte(', ip, ":", port, ") name is :", serviceName);
-        } catch (e) {
-            console.log(e);
+        }else{
+            try {
+                fs.writeFileSync(path, response.message);
+                console.log('get reomte(', ip, ":", port, ") name is :", serviceName);
+            } catch (e) {
+                console.log(e);
+            }
         }
     });
 }

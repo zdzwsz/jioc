@@ -1,4 +1,4 @@
-var NetProto = require("./NetProto");
+var ReomteRpcClient = require("./ReomteRpcClient");
 
 class JIoc {
 
@@ -25,8 +25,8 @@ class JIoc {
          } else if (o.type === "meta") {//元数据类型
 
          } else if (o.type === "remote") {
-            let netProto = new NetProto(o.ip, o.port, o.name);
-            o = netProto.getInstance();
+            let reomteRpcClient = new ReomteRpcClient(o.ip, o.port, o.name);
+            o = reomteRpcClient.getInstance();
          } else {
             //其余的是复杂对象类型
             let classType = require(o.type);
