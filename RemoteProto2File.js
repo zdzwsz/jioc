@@ -5,7 +5,6 @@ var metaProtoPath = "./meta.proto";
 
 
 function getProto2File(ip, port, serviceName,tempPath) {
-    let path = tempPath + "/" + serviceName + ".proto";
     var packageDefinition = protoLoader.loadSync(
         [metaProtoPath],
         {
@@ -22,7 +21,7 @@ function getProto2File(ip, port, serviceName,tempPath) {
             console.log(err);
         }else{
             try {
-                fs.writeFileSync(path, response.message);
+                fs.writeFileSync(tempPath, response.message);
                 console.log('get reomte(', ip, ":", port, ") name is :", serviceName);
             } catch (e) {
                 console.log(e);

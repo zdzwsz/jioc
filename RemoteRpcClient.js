@@ -1,20 +1,21 @@
 var grpc = require('grpc');
-var protoLoader = require('@grpc/proto-loader');
-var tempPath = "./temp"
-const child_process = require('child_process');
 var fs = require("fs");
+var protoLoader = require('@grpc/proto-loader');
+var {remotePath} = require("./InitPath");
+const child_process = require('child_process');
+
 
 class RemtoeRpcClient {
     constructor(ip, port, serviceName) {
         this.ip = ip;
         this.port = port;
         this.serviceName = serviceName;
-        this.path = tempPath + "/" + serviceName + ".proto";
+        this.path = remotePath + "/" + serviceName + ".proto";
         this.init();
     }
 
     init() {
-        let message = child_process.execFileSync("node", ["./RemoteProto2File.js", this.ip, this.port, this.serviceName, tempPath], {});
+        let message = child_process.execFileSync("node", ["./RemoteProto2File.js", this.ip, this.port, this.serviceName, this.path], {});
         console.log(String(message));
     }
 
@@ -36,8 +37,6 @@ class RemtoeRpcClient {
         }
 
     }
-
-
 }
 
 module.exports = RemtoeRpcClient;

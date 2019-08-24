@@ -5,9 +5,18 @@
         "value": "2018-01-01"
     },
     "age": 1,
-    "userType": {
+    "User": {
         "type": "meta",
-        "value": "User:{name:String;age:int}}"
+        "value": {"name":"string",
+                  "age":"int",
+                  "friend":"@Friend"}
+    },
+    "Friend":{
+        "type":"meta",
+        "value":{
+            "name":"string",
+            "age":"int"
+        }
     },
     "helloworld": {
         "type": "./test/HelloWorld",
@@ -43,7 +52,40 @@
                 }
             },
             {
-                "name": "sayHello"
+                "name": "sayUser",
+                "return": "string",
+                "parameters": {
+                    "user": "@User"
+                }
+            },
+            {
+                "name":"sayHelloFriends",
+                "parameters": {
+                    "friends": "string[]"
+                }
+            },
+            {
+                "name":"getUser",
+                "parameters": {
+                    "id": "string"
+                },
+                "return":"@Friend"
+            }
+        ]
+    },
+
+    "hello1": {
+        "type": "rpc",
+        "note": "这是一个类的注释",
+        "object": "@helloworld1",
+        "methods": [
+            {
+                "name": "sayHelloByMe1",
+                "note": "这是一个描述方法的注释",
+                "return": "string",
+                "parameters": {
+                    "name": "string"
+                }
             }
         ]
     },
@@ -53,6 +95,13 @@
         "ip":"127.0.0.1",
         "port":"50051",
         "name":"hello"
+    },
+
+    "remoteHello1":{
+        "type":"remote",
+        "ip":"127.0.0.1",
+        "port":"50051",
+        "name":"hello1"
     }
 
 }

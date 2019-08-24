@@ -5,7 +5,7 @@ var ServiceAgent = require('./ServiceAgent');
 var Json2Proto = require('./Json2Proto');
 var MetaService = require("./MetaService");
 
-var path = ".";
+var {path} = require("./InitPath");
 
 class JIocServer {
 

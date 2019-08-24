@@ -29,21 +29,28 @@ function main(){
     hello2.sayHello();
     hello2.sayHelloByMe("wsz");
 
-    console.time("remote");
     let remoteHello = ioc.get("remoteHello");
-    remoteHello.sayHello({},function(err , message){
-
+    remoteHello.sayHelloByMe({name:"zdz"},function(err , message){
     });
-    console.timeEnd("remote");
-    
-    console.time("remote1");
+
     remoteHello = ioc.get("remoteHello");
-    remoteHello.sayHello({},function(err , message){
-
+    remoteHello.sayHelloByMe({name:"wsz"},function(err , message){});
+    
+    remoteHello.sayUser({user:{name:"zdz",age:11}},function(err , message){
+        console.log(message);
     });
 
-console.timeEnd("remote1");
+    remoteHello.sayHelloFriends({friends:["wsz","zdz"]},function(err , response){
+        console.log("hello friends!");
+    });
 
+    remoteHello.getUser({id:"1"},function(err , response){
+        for(let key in response){
+            console.log("123:"+(response[key].age+2));
+        }
+    });
+    remoteHello = ioc.get("remoteHello1");
+    remoteHello.sayHelloByMe1({name:"wsz"},function(err , message){});
 }
 
 main();

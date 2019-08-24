@@ -1,4 +1,6 @@
-var ReomteRpcClient = require("./ReomteRpcClient");
+var RemoteRpcClient = require("./RemoteRpcClient");
+var fs = require("fs");
+
 
 class JIoc {
 
@@ -21,11 +23,11 @@ class JIoc {
          else if (isNull(o.type)) { //基本类型
             return o;
          } else if (o.type === "date") { //日期类型，
-
+            o = convertDateFromString(o.value)
          } else if (o.type === "meta") {//元数据类型
-
+            o = JSON.parse(o.value);
          } else if (o.type === "remote") {
-            let reomteRpcClient = new ReomteRpcClient(o.ip, o.port, o.name);
+            let reomteRpcClient = new RemoteRpcClient(o.ip, o.port, o.name);
             o = reomteRpcClient.getInstance();
          } else {
             //其余的是复杂对象类型
@@ -58,6 +60,13 @@ function isNull(o) {
 
 function isNotNull(o) {
    return o != null && o != undefined && o != "";
+}
+
+function convertDateFromString(dateString) {
+   if (dateString) { 
+       var date = new Date(dateString.replace(/-/,"/"))  
+       return date;
+   }
 }
 
 
